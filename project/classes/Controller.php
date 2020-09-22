@@ -16,12 +16,12 @@ abstract class Controller
         return $this->{$this->action}();
     }
 
-    public function returnView($viewModel, $fullView) {
-        $view = 'views/' . get_class($this) . '/' . $this->action . '.php';
-        if ($fullView) {
-            require_once './views/main.php';
+    protected function returnView($viewModel, $fullview) {
+        $view = 'views/'. get_class($this). '/' . $this->action. '.php';
+        if ($fullview) {
+            require('views/main.php');
         } else {
-            require_once $view;
+            require($view);
         }
     }
 }

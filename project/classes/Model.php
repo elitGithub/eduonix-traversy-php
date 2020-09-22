@@ -6,6 +6,9 @@ abstract class Model
     protected $dbh;
     protected $stmt;
 
+    /**
+     * Model constructor.
+     */
     public function __construct()
     {
         $this->dbh = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
@@ -15,6 +18,11 @@ abstract class Model
         $this->stmt = $this->dbh->prepare($query);
     }
 
+    /**
+     * @param $param
+     * @param $value
+     * @param null $type
+     */
     public function bind($param, $value, $type = null) {
         if (is_null($type)) {
             switch (true) {
@@ -35,10 +43,16 @@ abstract class Model
         }
     }
 
+    /**
+     *
+     */
     public function execute() {
         $this->stmt->execute();
     }
 
+    /**
+     * @return mixed
+     */
     public function resultSet() {
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_ASSOC);

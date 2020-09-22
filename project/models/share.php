@@ -1,9 +1,13 @@
 <?php
 
-Class ShareModel extends Model
+class ShareModel extends Model
 {
-    public function Index() {
+    public function Index(){
         $this->query('SELECT * FROM shares');
         return $this->resultSet();
+    }
+
+    public function add() {
+        return;
     }
 }
